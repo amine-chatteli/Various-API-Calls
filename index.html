@@ -3,65 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
-    <h3>THIS IS FOR THE JSON PRACTICE</h3>
-    <h4>1) CHECK LIST WITH SESSION STORAGE</h4>
-<div class="output">
-    <ul id="taskList"></ul>
+    <h4 class="titles">1) CHECK LIST WITH SESSION STORAGE</h4>
+<div class="section">
+    <div class="output">
+        <ul id="taskList"></ul>
+    </div>
+    <form id="myForm">
+        <input type="text">
+        <input type="submit" value="add task" class="example_a">
+    </form>
+    
 </div>
-<form id="myForm">
-    <input type="text">
-    <input type="submit" value="add task">
-</form>
-<br><br><br><br>
-*******************************************************************************************************************************
-<h3>THIS ONE IS FOR THE AJAX PRACTICE</h3>
-<h4> 2)DATA FROM API</h4>
 
-<div id="output2">
-    <input type="button" value="Load content">
+<h4 class="titles"> 2) LOAD DATA FROM RANDOM USER API</h4>
+<div class="section">
+    <div id="output2">
+    </div>
+    <input type="button" value="Load content" class="example_a">
 </div>
-<br><br><br>
-<h4>3)DATA FROM TEXT FILE</h4>
-<input type="button" value="load from file" id="button3">
+
+
+
+<h4 class="titles">3)LOAD DATA FROM TEXT FILE ON SERVER</h4>
+<div class="section">
+    <input type="button" value="load from file" id="button3"  class="example_a">
 <div id="output3"></div>
-<br><br><br>
+</div>
 
-******************************************************************************************************************************
-<h4>3)LOAD FROM CHUCK NORRIS API</h4>
-<input type="button" value="laugh with chuck Norris" id="button4">
-<div id="output4"></div>
-<br><br><br>
-<h4>4) LOAD FROM CHUCK NORRIS USING FETCH</h4>
-<input type="button" value="fetch it boii" id="button5">
+<h4 class="titles">3)LOAD DATA FROM CHUCK NORRIS API USING AJAX</h4>
+
+<div class="section">
+    <input type="button" value="laugh with chuck Norris" id="button4"  class="example_a">
+    <div id="output4"></div>
+</div>
+
+
+<h4 class="titles">4) LOAD FROM CHUCK NORRIS USING FETCH</h4>
+<div class="section">
+    <input type="button" value="fetch it boii" id="button5" class="example_a">
 <div id="output5"></div>
-<br><br><br>
-********************************************************************************************************************************
-<h4>5) POST DATA WITH FETCH</h4>
-<div id="output5"></div>
+</div>
 
-<form id="form">
-    <input type="text" name="first"  placeholder="first name">
-    <input type="text" name="last" placeholder="last name">
-    <input type="text" name="company" placeholder="company">
-    <input type="submit" value="Send data">
+
+
+<h4 class="titles">5) POST DATA WITH FETCH </h4>
+<div class="section">
+    <div id="output5" ></div>
+
+    <form id="form">
+        <input type="text" name="first"  placeholder="first name">
+         <input type="text" name="last" placeholder="last name">
+          <input type="text" name="company" placeholder="company">
+          <input type="submit" class="example_a" value="Send data">
+    </form>
+</div>
+
+
+<h4 class="titles">6) LOAD DATA USING JQUERY </h4>
+<div class="section">
+
+    <input type="button" value="jquery" class="example_a" id="button6">
+<div id="output6"></div><br>
+</div>
+
+<br>
+<h3 class="titles">LOAD AND POST DATA TO AND FROM GOOGLE SHEET</h3>
+<div class="section">
+    <h3>Add New Guy</h3>
+    <form action="" id="myForm2">
+<input type="text" name="first2" placeholder="first name">
+<input type="text" name="last2" placeholder="last name">
+<input type="text" name="company2" placeholder="company">
+<input type="text" name="group2" placeholder="group">
+<input type="submit" class="example_a" value="submit">
+<button id="fill" class="example_a">Auto fill</button>
 </form>
-<br><br><br>
-*********************************************************************************************************************************
-<h4>6) JQUERY WITH AJAX </h4>
-<input type="button" value="jquery" id="button6">
-<div id="output6"></div>
-<h4>POST DATA TO SERVER</h4>
-<form id="myform">
-    <input type="text" name="first" placeholder="first name" id="first">
-    <input type="text" name="last" placeholder="Last name"  id="last">
-    <input type="submit" value="POST THAT SHIT">
-</form>
-<br><br><br>
 
+    <button id="loadData" class="example_a">Load Data</button>
+    <div id="output"></div>
+        <table class="table-tab">
 
+        </table>
+           
+</div>
 
     <script src="jquery-3.4.1.min.js"></script>
     <script src="script.js"></script>

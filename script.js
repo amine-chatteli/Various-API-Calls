@@ -1,126 +1,4 @@
-//----------------------------------JSON AJAX API TUTORIAL ----------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------------
 
-/*var obj={
-  friends:[
-    {"firstname":"Amine",
-    "lastname":"chatteli",
-     
-     "skills":"frontend develper"
-    },
-    {"firstname":"Brown",
-    "lastname":"Graphics",
-     
-     "skills":"Graphic Designer"
-    },
-    {"firstname":"Amine",
-    "lastname":"krifi",
-     
-     "skills":"Spring boot developper"
-    }
-  ]
-}
-var display='';
-
-var friends=obj.friends
-for(x in friends){
-display+=(Number(x)+1)+ '---'+'First Name: '+friends[x].firstname+"<br>"
-+'Last Name: '+obj.friends[x].lastname+'<br>'
-+'Adress: '+friends[x].skills+'<br>';
-
-}
-obj.friends.splice(1,1,{
-    "firstname":"Amine",
-    "lastname":"mbarek",
-     
-     "skills":"chayech"
-
-})
-obj.friends.forEach(item=>{
-    display+=item.firstname+'<br>'
-    +item.lastname+'<br>'+
-    item.skills+'<br>';
-});
-document.querySelector('p').innerHTML=display;
- var data=JSON.parse('{"results":[{"gender":"male","name":{"title":"Mr","first":"Oscar","last":"Johansen"},"location":{"street":{"number":6218,"name":"Hærvejen"},"city":"Haslev","state":"Midtjylland","country":"Denmark","postcode":50946,"coordinates":{"latitude":"-35.7616","longitude":"-141.9565"},"timezone":{"offset":"+8:00","description":"Beijing, Perth, Singapore, Hong Kong"}},"email":"oscar.johansen@example.com","login":{"uuid":"b4d95467-b5c1-4341-ae58-bcdacb6edaaa","username":"greenlion767","password":"tight","salt":"RuWhpsgM","md5":"6c10e2d63d15af8ddc6d4c5b65c95ceb","sha1":"1dbe4db6d32fd9ba210becf3183601c5ac146f58","sha256":"18bcec23b8d37df9f66e17ddf19308f857de4272c80ded1362830e560ca31542"},"dob":{"date":"1987-05-06T16:47:14.247Z","age":33},"registered":{"date":"2017-01-27T05:38:48.357Z","age":3},"phone":"77388666","cell":"35141756","id":{"name":"CPR","value":"060587-5862"},"picture":{"large":"https://randomuser.me/api/portraits/men/65.jpg","medium":"https://randomuser.me/api/portraits/med/men/65.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/65.jpg"},"nat":"DK"}],"info":{"seed":"9686ba7978cff0ea","results":1,"page":1,"version":"1.3"}}');
- var person=data.results[0]
- var output=person.name.first+'<br>'+person.name.last+'<br>'+`<img src=${person.picture.thumbnail}>`;
-
-document.querySelector('body').innerHTML=output 
-var data=''
-window.onload=function(){
-    if(sessionStorage['Person']){
-         data =this.JSON.parse(sessionStorage["Person"])
-        var message ='<h1>Hello '+data.first+' '+data.last+'!'
-        this.document.querySelector('body').innerHTML=message;
-    }else{
-        this.document.querySelector('message').innerHTML='<h1>Hello new guy! tell me your name!</h1>'
-    }
-    
-}
-
-var button=document.querySelector('input[type="submit"]')
-var form=document.querySelector('form')
-form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var data=submitForm(form)
-    sessionStorage["Person"]=JSON.stringify(data);
-    
-})
-function submitForm(form){
-var inputs=document.querySelectorAll('input[type="text"]')
-console.log(inputs);
-var person={};
-for (var x=0;x<inputs.length;x++){
-    person[inputs[x].name]=inputs[x].value
-}
-return person
-
-}
-*/
-//---------------------------------JSON EXERCICE BUILDING CHECKLIST---------------------------------------------------------
-//----------------------------------MY ATTEMPT----------------------------------------------------------------------
-/*var dataJSON= [
-    {"info":"clean house","status":true},
-    {"info":"clean room","status":false},
-    {"info":"wash hands","status":true},
-    {"info":"shower","status":false},
-    {"info":"get money","status":true}
-  ]
-
-var html=''
-var index=-1;
-dataJSON.forEach(item=>{
-    index++
-    var status;
- item.status? status='checked':status='';
-html+='<li>'+item.info+`<input type="checkbox" data-id="${index}"${status}></li>`
-})
-document.querySelector('ul').innerHTML=html;
-
-var checks=document.querySelectorAll('input[type="checkbox"]')
-checks.forEach(item=>{
-    console.log(item);
-    
-    item.addEventListener('change',updateStatus)
-})
- function updateStatus(){
- var index=event.target.dataset.id;
-dataJSON[index].status=event.target.checked;
- }
-
- document.querySelector('form').addEventListener('submit',addTask)
- function addTask(){
-     event.preventDefault()
-     var task=document.querySelector('input[type="text"]').value
-dataJSON.push({"info":task,"status":false}) ;  
- }
-    */
-
-
-
-
-    //--------------------------------------JSON EXERCICE CORRECTION --------------------------------------------------------
 
 var dataJSON;
 var output =document.getElementById('output');
@@ -373,3 +251,83 @@ function fetcher(){
          })
      })
 
+////////////////////////////////////
+$('#loadData').click(function(){
+    var html=''
+  var url='https://spreadsheets.google.com/feeds/list/15q2PqaCJJwoFwr9xuQRIIeTWbKFz3ZZZLWuhkigZZs4/od6/public/values?alt=json';
+  $.getJSON(url,function(data){
+    var info=data.feed.entry
+      var arr =[]
+      for (let key in info){
+          var obj={'first name':info[key].gsx$first.$t,'last name: ':info[key].gsx$last.$t,
+        'Company: ': info[key].gsx$company.$t,'Group: ':info[key].gsx$group.$t}
+        arr.push(obj)
+      }
+      console.log(arr);
+      
+      let table = document.querySelector("table");
+      console.log(arr);
+      try{let heads = Object.keys(arr[0]);
+        generateTableHead(table, heads);
+        generateTable(table, arr);}
+      catch{
+           console.error('empty');
+         
+      }
+     
+  })
+    
+}) 
+function generateTableHead(table, data) {
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+    for (let key of data) {
+      let th = document.createElement("th");
+      let text = document.createTextNode(key);
+      th.appendChild(text);
+      row.appendChild(th);
+    }
+  }
+  
+function generateTable(table, data) {
+    for (let element of data) {
+      let row = table.insertRow();
+      for (key in element) {
+        let cell = row.insertCell();
+        let text = document.createTextNode(element[key]);
+        cell.appendChild(text);
+      }
+    }
+  }
+
+  $('#myForm2').submit(function(e){
+      e.preventDefault()
+      console.log('yep');
+      var myData=$('#myForm2 :input').serialize();
+      console.log(myData);
+      $.ajax({
+          url:'https://script.google.com/macros/s/AKfycbxoofAGITClJP7-yzyZh5zoM5XCOVfZ28fDvkvQojfcLplihdx6/exec',
+         method:'POST',
+         data:myData,
+         success:function(data){
+             console.log(data);
+             
+         }
+
+        })
+  })
+
+  document.getElementById('fill').addEventListener('click',function(){
+    $.ajax({
+        url: 'https://randomuser.me/api/',
+        dataType: 'json',
+        success: function(data) {
+            console.log(data.results[0]);
+            
+          document.querySelector('input[name="first2"]').value= data.results[0].name.first;
+          document.querySelector('input[name="last2"]').value=data.results[0].name.last;
+          document.querySelector('input[name="company2"]').value=data.results[0].location.city;
+          document.querySelector('input[name="group2"]').value=data.results[0].phone
+        }
+      });
+  })

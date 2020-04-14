@@ -176,22 +176,7 @@ function fetcher(){
     }
     
     // SEND DATA USING FETCH POST
-    var form=document.getElementById('form');
-    form.addEventListener('submit',function(e){
-        e.preventDefault();
-        loadJSON(formData(form))        
-    })
-    function formData(form){
-        var inputs=form.querySelectorAll('input[type="text"]');
-        var myData=''
-        for (var i=0;i<inputs.length;i++){
-            var name=inputs[i].name;
-           var value=inputs[i].value;
-           myData+= name+'='+value+'&';
-            
-        }
-        return myData.slice(0,-1);
-    }
+   
     function loadJSON(data){
         const url='http://s179017901.onlinehome.us/discoveryvip/';
         console.log(data);
@@ -324,10 +309,10 @@ function generateTable(table, data) {
         success: function(data) {
             console.log(data.results[0]);
             
-          document.querySelector('input[name="first2"]').value= data.results[0].name.first;
-          document.querySelector('input[name="last2"]').value=data.results[0].name.last;
-          document.querySelector('input[name="company2"]').value=data.results[0].location.city;
-          document.querySelector('input[name="group2"]').value=data.results[0].phone
+          document.querySelector('input[name="first"]').value= data.results[0].name.first;
+          document.querySelector('input[name="last"]').value=data.results[0].name.last;
+          document.querySelector('input[name="company"]').value=data.results[0].location.city;
+          document.querySelector('input[name="group"]').value=data.results[0].phone
         }
       });
   })
